@@ -1,0 +1,17 @@
+{
+    "name": "spotii/spotiipay",
+    "description": "Spotii extension for Magento 2",
+    "type": "magento2-module",
+    "homepage": "https://github.com/spotii-me/magento2/",
+    "keywords": ["spotii", "magento", "magento 2", "plugin", "extension", "payment", "gateway"],
+    "version": "1.0.0",
+    "license": [
+        "MIT"
+    ],
+    "autoload": {
+      "files": [ "registration.php" ],
+      "psr-4": {
+        "Spotii\\Spotiipay\\": ""
+      }
+    }
+  }

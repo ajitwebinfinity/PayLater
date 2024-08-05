@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @category    Spotii
+ * @package     Spotii_Spotiipay
+ * @copyright   Copyright (c) Spotii (https://www.spotii.me/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="spotiipay" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[<div class="spotii-payment-logo"></div><div class="spotii-payment-byline">Shop Now. Pay Later.</div>]]></label>
+                <fieldset_css>complex spotii-payment-section</fieldset_css>
+                <frontend_model>Spotii\Spotiipay\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
+                <field id="simplepath" type="text" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Spotii\Spotiipay\Block\Adminhtml\System\Config\Form\SpotiiRegisterConfig</frontend_model>
+                </field>
+                <group id="spotiipay_payment" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Payment Settings]]></label>
+                    <!-- active -->
+                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/spotiipay/active</config_path>
+                    </field>
+                    <!-- merchant country -->
+                    <field id="merchant_country" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Merchant Country</label>
+                        <source_model>Spotii\Spotiipay\Model\System\Config\Source\MerchantCountry</source_model>
+                        <config_path>payment/spotiipay/merchant_country</config_path>
+                    </field>
+                    <!-- title -->
+                    <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Title</label>
+                        <config_path>payment/spotiipay/title</config_path>
+                    </field>
+                    <!-- private key -->
+                    <field id="private_key" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Private Key</label>
+                        <comment>Look for this in your PayLater Dashboard</comment>
+                        <config_path>payment/spotiipay/private_key</config_path>
+                    </field>
+                    <!-- public key -->
+                    <field id="public_key" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Public Key</label>
+                        <comment>Look for this in your PayLater Dashboard</comment>
+                        <config_path>payment/spotiipay/public_key</config_path>
+                    </field>
+                    <!-- merchant id -->
+                    <field id="merchant_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Merchant ID</label>
+                        <comment>Look for this in your PayLater Dashboard</comment>
+                        <config_path>payment/spotiipay/merchant_id</config_path>
+                    </field>
+                    <!--payment mode-->
+                    <field id="payment_mode" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Payment Mode</label>
+                        <source_model>Spotii\Spotiipay\Model\Config\Source\Payment\Mode</source_model>
+                        <config_path>payment/spotiipay/payment_mode</config_path>
+                    </field>
+                    <!-- log tracker -->
+                    <field id="log_tracker" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable log tracker?</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>If yes, all PayLater actions will be logged</comment>
+                        <config_path>payment/spotiipay/log_tracker</config_path>
+                    </field>
+                    <!-- payment action -->
+                    <field id="payment_action" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Payment Action</label>
+                        <source_model>Spotii\Spotiipay\Model\Config\Source\Payment\PaymentAction</source_model>
+                        <config_path>payment/spotiipay/payment_action</config_path>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/spotiipay/sort_order</config_path>
+                            <depends>
+                                <field id="spotiipay">1</field>
+                            </depends>
+                    </field>
+                </group>
+                <group id="spotiipay_widget" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Widget Settings]]></label>
+                    <group id="spotiipay_widget_product_page" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label><![CDATA[Product Page]]></label>
+                    <field id="xpath" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Price block selector</label>
+                        <comment>
+                            Path of the price element to watch for
+                            For multiple, separate by |
+                            Eg: .product-price/.price|.extra-info/.price-min
+                        </comment>
+                        <config_path>product/spotiipay/xpath</config_path>
+                    </field>
+                    <field id="renderXPath" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Product page: render to element path</label>
+                        <comment>
+                            Path of the element to which to render widget.
+                            For multiple, separate by |
+                            This path is relative to the corresponding price element.
+                            So, the first path in this will be relative to the first path in Price block selector.
+                            Second to the second and so on.
+                            Eg: If .product-price/.price is the path to the price element and you want to
+                            put the widget in the 2nd parent of that element, you should use ../..
+                        </comment>
+                        <config_path>product/spotiipay/render_x_path</config_path>
+                    </field>
+                    <field id="forced_show" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Show in all countries</label>
+                        <comment>
+                            If false, the widget is shown only in countries where PayLater is supported
+                        </comment>
+                        <config_path>product/spotiipay/forced_show</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="alignment" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Alignment</label>
+                        <comment>Alignment of the widget in the div</comment>
+                        <source_model>Spotii\Spotiipay\Model\Config\Source\Product\WidgetAlignment</source_model>
+                        <config_path>product/spotiipay/alignment</config_path>
+                    </field>
+                    <field id="theme" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Theme</label>
+                        <comment>Select the theme depending on your site's background</comment>
+                        <source_model>Spotii\Spotiipay\Model\Config\Source\Product\ThemeAlignment</source_model>
+                        <config_path>product/spotiipay/theme</config_path>
+                    </field>
+                    <field id="widthType" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Width Type</label>
+                        <comment>Text width of the widget</comment>
+                        <config_path>product/spotiipay/width_type</config_path>
+                        <source_model>Spotii\Spotiipay\Model\Config\Source\Product\WidthAlignment</source_model>
+                    </field>
+                    <field id="imageUrl" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Image URL</label>
+                        <comment>(Optional) Override with URL to a different Logo you want else leave empty</comment>
+                        <config_path>product/spotiipay/image_url</config_path>
+                    </field>
+                    <field id="hideClasses" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Hide classes</label>
+                        <comment>
+                            Classes to be hidden when PayLater widget is visible.
+                            There are other products like PayLater which do not work in countries where PayLater works.
+                            You can hide them by adding their classes here.
+                            To hide multiple elements enter their classes like the following.
+                            Eg: class-to-hide|class-to-hide-2
+                        </comment>
+                        <config_path>product/spotiipay/hide_classes</config_path>
+                    </field>
+                    </group>
+                    <group id="spotiipay_widget_cart_page" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label><![CDATA[Cart Page]]></label>
+                        <field id="xpath" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Price block selector</label>
+                            <comment>
+                                Path of the price element to watch for
+                                For multiple, separate by |
+                                Eg: .grand/.price|.extra-info/.price-min
+                            </comment>
+                            <config_path>cart/spotiipay/xpath</config_path>
+                        </field>
+                        <field id="renderXPath" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Cart page: render to element path</label>
+                            <comment>
+                                Path of the element to which to render widget.
+                                For multiple, separate by |
+                                This path is relative to the corresponding price element.
+                                So, the first path in this will be relative to the first path in Price block selector.
+                                Second to the second and so on.
+                                Eg: If .grand/.price is the path to the price element and you want to
+                                put the widget in the 2nd parent of that element, you should use ../..
+                            </comment>
+                            <config_path>cart/spotiipay/render_x_path</config_path>
+                        </field>
+                        <field id="forced_show" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Show in all countries</label>
+                            <comment>
+                                If false, the widget is shown only in countries where PayLater is supported
+                            </comment>
+                            <config_path>cart/spotiipay/forced_show</config_path>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        </field>
+                        <field id="alignment" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Alignment</label>
+                            <comment>Alignment of the widget in the div</comment>
+                            <source_model>Spotii\Spotiipay\Model\Config\Source\Product\WidgetAlignment</source_model>
+                            <config_path>cart/spotiipay/alignment</config_path>
+                        </field>
+                        <field id="theme" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Theme</label>
+                            <comment>Select the theme depending on your site's background</comment>
+                            <source_model>Spotii\Spotiipay\Model\Config\Source\Product\ThemeAlignment</source_model>
+                            <config_path>cart/spotiipay/theme</config_path>
+                        </field>
+                        <field id="widthType" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Width Type</label>
+                            <comment>Text width of the widget</comment>
+                            <config_path>cart/spotiipay/width_type</config_path>
+                            <source_model>Spotii\Spotiipay\Model\Config\Source\Product\WidthAlignment</source_model>
+                        </field>
+                        <field id="imageUrl" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Image URL</label>
+                            <comment>(Optional) Override with URL to a different Logo you want else leave empty</comment>
+                            <config_path>cart/spotiipay/image_url</config_path>
+                        </field>
+                        <field id="hideClasses" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Hide classes</label>
+                            <comment>
+                                Classes to be hidden when PayLater widget is visible.
+                                There are other products like PayLater which do not work in countries where PayLater works.
+                                You can hide them by adding their classes here.
+                                To hide multiple elements enter their classes like the following.
+                                Eg: class-to-hide|class-to-hide-2
+                            </comment>
+                            <config_path>cart/spotiipay/hide_classes</config_path>
+                        </field>
+                    </group>
+                    <group id="spotiipay_widget_catalog_page" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label><![CDATA[Catalogue Page]]></label>
+                        <field id="renderXPath" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Catalogue page: render to element path</label>
+                            <comment>
+                                Path of the element to which to render widget. Enter class name only. Ex : price-wrapper
+                            </comment>
+                            <config_path>catalog/spotiipay/render_x_path</config_path>
+                        </field>
+                    </group>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @category    Spotii
+ * @package     Spotii_Spotiipay
+ * @copyright   Copyright (c) Spotii (https://www.spotii.me/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="payment_method_is_active">
+        <observer name="spotii_pay_availability" instance="Spotii\Spotiipay\Observer\MethodAvailabilityObserver" />
+    </event>
+    <event name="sales_order_place_before">
+        <observer name="custom_sales_order_place_before" instance="Spotii\Spotiipay\Observer\SalesOrderPlaceBefore" />
+    </event>
+</config>

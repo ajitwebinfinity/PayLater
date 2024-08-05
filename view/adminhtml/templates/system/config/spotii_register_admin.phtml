@@ -1,0 +1,27 @@
+<?php
+/*
+ * @category    Spotii
+ * @package     Spotii_Spotiipay
+ * @copyright   Copyright (c) Spotii (https://www.spotii.me/)
+ */
+?>
+<div id="spotii_config">
+    <br/>
+    <div data-mage-init='{
+        "Spotii_Spotiipay/js/config": <?php echo /* @noEscape */
+    $block->getJsonConfig() ?> }'
+         id="spotii_config">
+
+        <span class="spotii-register">
+          <button>
+              <span><?= $block->escapeHtml(__('Register for PayLater')); ?></span>
+          </button>
+        </span>
+        <span class="spotii-or">
+        &nbsp; <?= $block->escapeHtml(__('or')); ?> &nbsp;
+          <a href="#" id="spotii-config-skip">
+            <?= $block->escapeHtml(__("I've already setup PayLater, I want to edit my settings")); ?>
+          </a>
+        </span>
+    </div>
+</div>

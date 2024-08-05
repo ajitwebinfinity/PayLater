@@ -1,0 +1,76 @@
+
+<div class="payment-method" id="spotiipay-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label">
+            <img data-bind="attr: {src: getSpotiipayImgSrc(), alt: getTitle()}"
+                 class="payment-icon"/>
+            <span>
+                <!-- ko i18n: 'Shop Now. Pay Later' --><!-- /ko -->
+            </span>
+        </label>
+    </div>
+    <div class="payment-method-content" id="spotiipay">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <!-- <div class="cover">
+            <span class="spotii-payment-text" data-bind="text: getPaymentText()"></span>
+            <div class="progressbar-container">
+                <div class="bar"></div>
+                <ul class="steps">
+                    <li class="highlight">
+                        <span class="spotii-installment-amount"></span>
+                        <span class="time-period">Today</span>
+                    </li>
+                    <li class="step">
+                        <span class="spotii-installment-amount"></span>
+                        <span class="time-period">Second payment</span>
+                    </li>
+                    <li class="step">
+                        <span class="spotii-installment-amount"></span>
+                        <span class="time-period">Third payment</span>
+                    </li>
+                    <li class="step">
+                        <span class="spotii-installment-amount final"></span>
+                        <span class="time-period">Fourth payment</span>
+                    </li>
+                </ul>
+            </div>
+            <span class="spotii-grand-total" data-bind="text: getGrandTotal()"></span>
+        </div> -->
+        <div class="payment-method-content spotiipay-redirect">
+            <div class="redirection-info" data-bind="visible:isTotalValid()">
+                <!-- ko i18n: 'You will be redirected to the PayLater Checkout when you click on Continue to PayLater. ' --><!-- /ko -->
+
+            </div>
+
+            <div id="total-benchmark-info" data-bind="text:getTotalInvalidText()">
+            </div>
+
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button class="action primary checkout"
+                            type="submit"
+                            data-bind="
+                                click: continueToSpotiipay,
+                                attr: {title: $t('Continue to PayLater')},
+                                css: {disabled: !isPlaceOrderActionAllowed() || !isTotalValid()},
+                                enable: (getCode() == isChecked())
+                                "
+                            disabled>
+                        <span data-bind="i18n: 'Continue to PayLater '"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

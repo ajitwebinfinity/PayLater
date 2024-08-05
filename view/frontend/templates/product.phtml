@@ -1,0 +1,16 @@
+<?php
+/*
+ * @category    Spotii
+ * @package     Spotii_Spotiipay
+ * @copyright   Copyright (c) Spotii (https://www.spotii.me/)
+ */
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "productWidget": {
+                "jsConfig" : <?php echo json_encode($this->getJsConfig()) ?>
+            }
+        }
+    }
+</script>

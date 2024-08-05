@@ -1,0 +1,19 @@
+diff --git a/Controller/Standard/Complete.php b/Controller/Standard/Complete.php
+index 6d75e35..0744302 100755
+--- a/Controller/Standard/Complete.php
++++ b/Controller/Standard/Complete.php
+@@ -52,7 +52,13 @@ class Complete extends SpotiiPay
+ 
+             $order = $this->_orderFactory->create()->loadByIncrementId($orderId);
+             $this->_spotiipayModel->capturePostSpotii($order->getPayment(), $order->getGrandTotal());
+-            $order->setState('processing');
++            if (!$order->hasInvoices()) {
++                $invoice = $order->prepareInvoice();
++                $invoice->register();
++                $order->addRelatedObject($invoice);
++            }
++            $order->setState('processing')->save();
++            $order->setStatus('processing')->save();
+             $order->save();
+ 
+             if ($order) {

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @category    Spotii
+ * @package     Spotii_Spotiipay
+ * @copyright   Copyright (c) Spotii (https://www.spotii.me/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <spotiipay>
+		<active>1</active>
+                <model>Spotii\Spotiipay\Model\SpotiiPay</model>
+                <order_status>processing</order_status>
+                <merchant_country>US</merchant_country>
+                <payment_mode>sandbox</payment_mode>
+                <log_tracker>0</log_tracker>
+                <payment_action>authorize_capture</payment_action>
+                <title>PayLater</title>
+                <sort_order>0</sort_order>
+	    </spotiipay>
+        </payment>
+    </default>
+</config>

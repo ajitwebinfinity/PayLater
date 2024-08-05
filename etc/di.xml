@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @category    Spotii
+ * @package     Spotii_Spotiipay
+ * @copyright   Copyright (c) Spotii (https://www.spotii.me/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Spotii\Spotiipay\Model\Api\ConfigInterface" type="Spotii\Spotiipay\Model\Api\Config"/>
+	<preference for="Spotii\Spotiipay\Model\Api\ProcessorInterface" type="Spotii\Spotiipay\Model\Api\Processor"/>
+	<preference for="Spotii\Spotiipay\Model\Config\Container\SpotiiApiConfigInterface" type="Spotii\Spotiipay\Model\Config\Container\SpotiiApiIdentity"/>
+	<preference for="Spotii\Spotiipay\Model\Config\Container\ProductWidgetConfigInterface" type="Spotii\Spotiipay\Model\Config\Container\ProductWidgetIdentity"/>
+	<preference for="Spotii\Spotiipay\Model\Config\Container\CartWidgetConfigInterface" type="Spotii\Spotiipay\Model\Config\Container\CartWidgetIdentity"/>
+	<preference for="Spotii\Spotiipay\Model\Config\Container\CatalogWidgetConfigInterface" type="Spotii\Spotiipay\Model\Config\Container\CatalogWidgetIdentity"/>
+</config>
